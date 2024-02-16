@@ -1,0 +1,49 @@
+#
+# PHY 1570 Lab -- read MAGSAT data
+#
+
+#  ====================================================================================
+#    Item   Description        Binary  ASCII     Units           Notes         Columns
+#  ====================================================================================
+#   1   Milliseconds of day      I*4    I8      millisec                         1-8
+#   2   LAMBDA Geocentric        R*4   F8.3     degree     -90.000 -  90.000     9-16
+#       latitude of spacecraft
+#   3   PHI Geocentric           R*4   F8.3     degree    -180.000 - 180.000    17-24
+#       longitude of spacecraft
+#   4   R Radial distance        R*4   F9.3         km          6670 - 7000     25-33
+#       from center of the
+#       Earth to spacecraft
+#   5   BX Geocentric            R*4   F8.1         nT                          34-41
+#       North component
+#       of magnetic field
+#   6   BY Geocentric            R*4   F8.1         nT                          42-49
+#       East component
+#       of magnetic field
+#   7   BZ Geocentric            R*4   F8.1         nT                          50-57
+#       vertical component
+#       of magnetic field
+#   8   Atitude processing       I*4   I5                                       58-62
+#       flag [2]
+#  ==========================================================================
+
+
+file1 = open('magsat.dat', 'r')  # open file ('r' for read)
+Lines = file1.readlines()        # read all lines from file to list of strings
+
+
+with open('magsat.dat', 'r') as f:
+   for line in f:
+      Time = int(line[0:8])
+      print (Time)
+      Lambda = float(line[8:16])
+      Phi = float(line[16:24])
+      # R =
+      # Bx =
+      # By =
+      # Bz =
+      flag = int(line[57:62])
+      print (Time, Lambda, Phi, flag)
+
+file1.close()                    # close file
+
+print('Done.')
